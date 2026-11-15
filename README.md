@@ -13,10 +13,10 @@ A public dbt plus Duckdb piepline over ~692k real job postings, rebuilt and repu
 
 | What I Built | How I Implemented | Where to Look
 | --- | --- | --- |
-| **dbt pipeline** | sources → cleaned model → insight marts | ['analytics/models'](./analytics/models/) |
+| **dbt pipeline** | sources → cleaned model → insight marts | ['analytics/models'](./dbt-duckdb-pipeline/analytics/models/) |
 | **Data tests** | `unique` / `not_null` on every mart grain | [`schema.yml`](./analytics/models/schema.yml) |
-| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site] |
-| **Public CI** | build + test + publish on every push | [Actions workflow](https://github.com/KelvinAttoh/dbt-Data-Engineering-Course/blob/main/.github/workflows/dbt.build.yml) |
+| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site](https://kelvinattoh.github.io/dbt-Data-Engineering-Course/)|
+| **Public CI** | build + test + publish on every push | [Actions workflow](https://github.com/KelvinAttoh/dbt-Data-Engineering-Course/actions) |
 | **Environments** | local `dev` vs CI `prod` targets | [`ci/profiles.yml`](./ci/profiles.yml) |
 | **Published warehouse** | one `ATTACH` queryable by anyone | [`Query it`](../dbt-duckdb-pipeline/)
 
@@ -85,6 +85,8 @@ SELECT * FROM monthly_summary;
 
 ## 📖 Docs
 Docs are generated with `dbt docs generate` and published to GitHub Pages:
+
+→ [kelvinattoh.github.io/dbt-Data-Engineering-Course](https://kelvinattoh.github.io/dbt-Data-Engineering-Course/)
 
 The site shows:
 
