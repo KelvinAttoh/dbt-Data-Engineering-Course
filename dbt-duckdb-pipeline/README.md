@@ -15,7 +15,7 @@ A public dbt plus Duckdb piepline over ~692k real job postings, rebuilt and repu
 | --- | --- | --- |
 | **dbt pipeline** | sources → cleaned model → insight marts | ['analytics/models'](./analytics/models/) |
 | **Data tests** | `unique` / `not_null` on every mart grain | [`schema.yml`](./analytics/models/schema.yml) |
-| **Hosted dbt docs ** | lineage, descriptions, column tests | [Live docs site] |
+| **Hosted dbt docs** | lineage, descriptions, column tests | [Live docs site] |
 | **Public CI** | build + test + publish on every push | [Actions workflow] |
 | **Environments** | local `dev` vs CI `prod` targets | [`ci/profiles.yml`](./ci/profiles.yml) |
 | **Published warehouse** | one `ATTACH` queryable by anyone | [`Query it`](../dbt-duckdb-pipeline/)
