@@ -1,6 +1,6 @@
 # Automated Job Postings Pipeline (v1) - dbt + Duckdb
 
-![dbt pipeline diagram](images/dbt_pipeline.png)
+![dbt pipeline diagram](./dbt-duckdb-pipeline/images/dbt_pipeline.png)
 
 A public dbt plus Duckdb piepline over ~692k real job postings, rebuilt and republished automatically on every push.
 
