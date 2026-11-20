@@ -13,11 +13,14 @@
 	`job_salary` comment 'Raw salary text, unparsed for now.',
 	`job_schedule_type` comment 'As scraped; 12,252 nulls stay null - documented, not fixed.',
 	`job_work_from_home` comment 'True when the posting is flagged remote.',
-	`job_extensions_raw` comment 'Raw extensions JSON - the benefits flags live in here, unparsed for now.',
 	`searched_at` comment 'Scrape timestamp (search_time renamed).',
 	`search_date` comment 'Scrape day.',
 	`search_term` comment 'The role the scraper searched for; three values by construction.',
-	`search_location` comment 'Location parameter the scraper searched under.'
+	`search_location` comment 'Location parameter the scraper searched under.',
+	`has_no_degree_mentioned` comment 'Posting lists No degree mentioned among its enxtensions',
+	`has_health_insurance` comment 'Posting lists Health insurance among its enxtensions',
+	`has_dental_insurance` comment 'Posting lists Dental insurance among its enxtensions',
+	`has_paid_time_off` comment 'Posting lists Paid time off among its enxtensions'
   )
   comment 'One row per posting per scrape day - a job re-scraped across days keeps every row. 691,950 rows after the door-drop (the scraper\'s own error flag).
 '
@@ -39,11 +42,19 @@ Cleaned AS (
         job_salary,
         job_schedule_type,
         job_work_from_home,
-        job_extensions_raw,
         search_time     AS searched_at,
         search_date,
         search_term,
-        search_location
+        search_location,
+        ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "No degree mentioned") AS has_no_degree_mentioned,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Health insurance") AS has_health_insurance,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Dental insurance") AS has_dental_insurance,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Paid time off") AS has_paid_time_off
     FROM source
 )
 SELECT

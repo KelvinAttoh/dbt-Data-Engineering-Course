@@ -1,4 +1,5 @@
 
+
 WITH source AS (
     SELECT
         *
@@ -16,11 +17,19 @@ Cleaned AS (
         job_salary,
         job_schedule_type,
         job_work_from_home,
-        job_extensions_raw,
         search_time     AS searched_at,
         search_date,
         search_term,
-        search_location
+        search_location,
+        ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "No degree mentioned") AS has_no_degree_mentioned,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Health insurance") AS has_health_insurance,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Dental insurance") AS has_dental_insurance,ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "Paid time off") AS has_paid_time_off
     FROM source
 )
 SELECT

@@ -1,3 +1,9 @@
+{% set extension_keywords = [
+    "No degree mentioned",
+    "Health insurance",
+    "Dental insurance",
+    "Paid time off"]
+%}
 
 WITH source AS (
     SELECT
@@ -16,11 +22,15 @@ Cleaned AS (
         job_salary,
         job_schedule_type,
         job_work_from_home,
-        job_extensions_raw,
         search_time     AS searched_at,
         search_date,
         search_term,
-        search_location
+        search_location,
+        {% for keyword in extension_keywords -%}
+        ARRAY_CONTAINS(
+            FROM_JSON(job_extensions_raw, 'array<string>'),
+            "{{ keyword }}") AS has_{{ keyword | lower | replace(" ", "_") }} {{- "," if not loop.last }}
+        {%- endfor %}
     FROM source
 )
 SELECT
