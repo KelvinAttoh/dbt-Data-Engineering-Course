@@ -29,7 +29,7 @@ Cleaned AS (
         {% for keyword in extension_keywords -%}
         ARRAY_CONTAINS(
             FROM_JSON(job_extensions_raw, 'array<string>'),
-            "{{ keyword }}") AS has_{{ keyword | lower | replace(" ", "_") }} {{- "," if not loop.last }}
+            "{{ keyword }}") AS has_{{ slugify(keyword) }} {{- "," if not loop.last }}
         {%- endfor %}
     FROM source
 )

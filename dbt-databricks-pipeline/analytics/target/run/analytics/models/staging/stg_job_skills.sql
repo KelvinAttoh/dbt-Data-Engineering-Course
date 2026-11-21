@@ -2,7 +2,7 @@
   
   
   
-  create or replace view `dev`.`default_staging`.`stg_job_skills`
+  create or replace view `dev`.`staging`.`stg_job_skills`
   (
     `job_id` comment 'Every row\'s parent exists in stg_job_postings - the export\'s join guarantees it.',
 	`skill_id` comment 'Skill key; the human-readable text rides in skill_keyword.',

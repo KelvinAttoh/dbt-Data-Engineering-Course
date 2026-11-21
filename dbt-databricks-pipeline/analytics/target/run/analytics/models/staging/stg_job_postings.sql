@@ -2,7 +2,7 @@
   
   
   
-  create or replace view `dev`.`default_staging`.`stg_job_postings`
+  create or replace view `dev`.`staging`.`stg_job_postings`
   (
     `job_id` comment 'The scraper\'s posting id. Not unique at this grain - one row per posting per scrape day.',
 	`job_title` comment 'Posting title as scraped.',
