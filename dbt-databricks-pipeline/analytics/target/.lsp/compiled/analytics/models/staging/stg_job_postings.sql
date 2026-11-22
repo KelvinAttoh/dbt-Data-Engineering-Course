@@ -5,6 +5,7 @@ WITH source AS (
         *
     FROM `raw`.`jobs`.`raw_job_postings`
     WHERE error IS NOT TRUE
+        AND job_id IS NOT NULL
 ),
 Cleaned AS (
     SELECT

@@ -1,0 +1,1 @@
+{{ test_non_negative(column_name="salary_min", model=get_where_subquery(ref('stg_job_postings'))) }}

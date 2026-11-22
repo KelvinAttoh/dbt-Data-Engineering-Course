@@ -1,0 +1,1 @@
+{{ test_relationships(column_name="company_name", field="company_name", model=get_where_subquery(ref('fct_job_postings')), to=ref('dim_company')) }}

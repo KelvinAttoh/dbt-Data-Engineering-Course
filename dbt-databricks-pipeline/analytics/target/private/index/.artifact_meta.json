@@ -2,16 +2,16 @@
   "target_dir": "/Users/bravo/dbt Data Engineering Course/dbt-databricks-pipeline/analytics/target",
   "fingerprints": {
     "run_results.json": {
-      "size": 11697,
-      "modified_secs": 1795299439
+      "size": 26100,
+      "modified_secs": 1795312251
     },
     "semantic_manifest.json": {
       "size": 234,
-      "modified_secs": 1795299410
+      "modified_secs": 1795312217
     },
     "manifest.json": {
-      "size": 1004965,
-      "modified_secs": 1795299439
+      "size": 1056396,
+      "modified_secs": 1795312251
     }
   },
   "write_source": "DirectWrite",

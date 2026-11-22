@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="job_id", model=get_where_subquery(ref('bridge_job_skills'))) }}
