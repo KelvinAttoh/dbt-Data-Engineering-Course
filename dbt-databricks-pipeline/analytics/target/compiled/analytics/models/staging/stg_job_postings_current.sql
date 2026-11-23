@@ -3,7 +3,7 @@
 SELECT
     *
 FROM `dev`.`staging`.`stg_job_postings`
-WHERE search_date <= CAST('2026-11-22 23:58:51.115326+00:00' AS DATE)
+WHERE search_date <= CAST('2026-11-23 18:41:10.347563+00:00' AS DATE)
 QUALIFY
     ROW_NUMBER() OVER(
         PARTITION BY job_id
