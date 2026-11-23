@@ -4,7 +4,7 @@ with __dbt__cte__stg_job_postings_current as (
 SELECT
     *
 FROM `dev`.`staging`.`stg_job_postings`
-WHERE search_date <= CAST('2026-11-22 20:30:19.134692+00:00' AS DATE)
+WHERE search_date <= CAST('2026-11-23 01:16:13.582782+00:00' AS DATE)
 QUALIFY
     ROW_NUMBER() OVER(
         PARTITION BY job_id
