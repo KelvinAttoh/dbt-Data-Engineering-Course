@@ -1,3 +1,5 @@
+
+
 WITH job_postings AS (
     SELECT * FROM `dev`.`staging`.`stg_job_postings`
 )
@@ -22,6 +24,11 @@ SELECT
     has_paid_time_off,
     has_no_degree_mentioned
 FROM job_postings
+
+
+WHERE search_date > (SELECT MAX(search_date) FROM `dev`.`marts`.`fct_job_postings` )
+
+
 QUALIFY
     ROW_NUMBER() OVER (
         PARTITION BY job_id

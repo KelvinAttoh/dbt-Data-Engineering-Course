@@ -1,3 +1,5 @@
+{{ config(materialized = 'incremental') }}
+
 WITH job_postings AS (
     SELECT * FROM {{ ref('stg_job_postings') }}
 )
@@ -22,6 +24,11 @@ SELECT
     has_paid_time_off,
     has_no_degree_mentioned
 FROM job_postings
+
+{% if is_incremental() %}
+WHERE search_date > (SELECT MAX(search_date) FROM {{ this }} )
+{% endif %}
+
 QUALIFY
     ROW_NUMBER() OVER (
         PARTITION BY job_id

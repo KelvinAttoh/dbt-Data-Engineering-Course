@@ -1,50 +1,23 @@
+-- back compat for old kwarg name
+  
+  
+  
+  
+  
+  
+      
+  
 
-  
-    
-        create or replace table `dev`.`marts`.`fct_job_postings`
-      
-      
-    
-      using delta
-    
-  
-      
-      
-      
-      
-      
-      
-      comment 'One row per job posting — latest scrape wins. Incremental (merge on job_id): re-scrapes update in place, new jobs insert.
-'
-      
-      as
-      WITH job_postings AS (
-    SELECT * FROM `dev`.`staging`.`stg_job_postings`
-)
-
-SELECT
-    job_id,
-    job_title,
-    search_term,
-    company_name,
-    job_location,
-    source_platform,
-    job_schedule_type,
-    job_work_from_home,
-    search_date,
-    salary_min,
-    salary_max,
-    salary_avg,
-    salary_period,
-    salary_currency,
-    has_health_insurance,
-    has_dental_insurance,
-    has_paid_time_off,
-    has_no_degree_mentioned
-FROM job_postings
-QUALIFY
-    ROW_NUMBER() OVER (
-        PARTITION BY job_id
-        ORDER BY searched_at DESC
-    ) = 1
-  
+    merge
+    into
+        `dev`.`marts`.`fct_job_postings` as DBT_INTERNAL_DEST
+    using
+        `fct_job_postings__dbt_tmp` as DBT_INTERNAL_SOURCE
+    on
+        FALSE
+    when matched
+        then update set
+            *
+    when not matched
+        then insert
+            *
