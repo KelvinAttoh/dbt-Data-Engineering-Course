@@ -1,1 +1,0 @@
-{{ generate_schema_name('staging', none) }}

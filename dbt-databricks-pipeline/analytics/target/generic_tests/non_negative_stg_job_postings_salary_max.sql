@@ -1,1 +1,0 @@
-{{ test_non_negative(column_name="salary_max", model=get_where_subquery(ref('stg_job_postings'))) }}

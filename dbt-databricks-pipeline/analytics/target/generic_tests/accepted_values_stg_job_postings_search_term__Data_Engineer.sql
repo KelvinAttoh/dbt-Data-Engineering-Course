@@ -1,1 +1,0 @@
-{{ test_accepted_values(column_name="search_term", model=get_where_subquery(ref('stg_job_postings')), values=["Data Engineer"]) }}

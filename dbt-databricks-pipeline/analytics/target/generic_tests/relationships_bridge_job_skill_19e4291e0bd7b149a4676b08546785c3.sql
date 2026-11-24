@@ -1,1 +1,0 @@
-{{ test_relationships(column_name="skill_id", field="skill_id", model=get_where_subquery(ref('bridge_job_skills')), to=ref('dim_skill')) }}

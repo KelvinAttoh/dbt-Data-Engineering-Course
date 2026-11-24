@@ -1,1 +1,0 @@
-select * from {{ ref('stg_job_postings_current') }}
